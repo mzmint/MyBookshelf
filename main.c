@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-_Bool Validate(char day[], char month[], char year[]) {
+static _Bool Validate(char day[], char month[], char year[]) {
     char* endptr;
 
     if (strcmp(month, "4") == 0 || strcmp(month, "6") == 0 || strcmp(month, "9") == 0 || strcmp(month, "11") == 0) {
@@ -33,6 +33,7 @@ int main(void) {
 
     char name[256];
     char author[256];
+    char publisher[256];
     char day[4];
     char month[4];
     char year[7];
@@ -69,6 +70,11 @@ int main(void) {
         printf("Enter book author: \n");
         if (fgets(author, sizeof(author), stdin) == NULL) break;
         author[strcspn(author, "\n")] = '\0';
+
+        printf("Enter Publisher: \n");
+        if (fgets(publisher, sizeof(publisher), stdin) == NULL) break;
+        publisher[strcspn(publisher, "\n")] = '\0';
+
         while (!isDateValid) {
 
             isValid = 0;
@@ -125,8 +131,8 @@ int main(void) {
         if (fgets(isbn, sizeof(isbn), stdin) == NULL) break;
         isbn[strcspn(isbn, "\n")] = '\0';
 
-        fprintf(file, "%s,%s,%s,%s,%s,%s\n",
-            name, author, day, month, year, isbn);
+        fprintf(file, "%s,%s,%s,%s,%s,%s,%s\n",
+            name, author, publisher, day, month, year, isbn);
 
         printf("Book added!\n");
 
