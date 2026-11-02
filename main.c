@@ -41,7 +41,13 @@ int main(void) {
 
     char* endptr;
 
-    FILE *file = fopen("bookshelf.csv", "a+");
+    char bookshelf[256];
+
+    printf("Enter bookshelf name: \n");
+    fgets(bookshelf, sizeof(bookshelf), stdin);
+    bookshelf[strcspn(bookshelf, "\n")] = '\0';
+
+    FILE *file = fopen(strcat(bookshelf, ".csv"), "a+");
 
     if (file == NULL) {
         printf("Error creating file!\n");
